@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TruthLens | Deepfake detection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.18.0"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="TruthLens home">
+      <span class="brand-mark" aria-hidden="true">◈</span>
+      <span>TruthLens</span>
+    </a>
+    <span class="model-status"><span class="status-dot"></span> Model ready</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">MEDIA FORENSICS · IMAGE &amp; VIDEO ANALYSIS</p>
+      <h1>Know what you're<br>really looking at.</h1>
+      <p class="hero-copy">Upload an image or video and get an instant authenticity check —<br>run privately through your detection model.</p>
+    </section>
+
+    <section class="workspace" aria-labelledby="diagnosis-title">
+      <h2 id="diagnosis-title">Run an analysis</h2>
+      <div class="analysis-grid">
+        <form class="upload-card" id="upload-form">
+          <div class="drop-zone" id="drop-zone" tabindex="0" role="button" aria-controls="media-input">
+            <input id="media-input" type="file" accept="image/*,video/*" hidden>
+            <div class="drop-content" id="drop-content">
+              <span class="upload-icon" aria-hidden="true">↥</span>
+              <strong>Drop a file to inspect</strong>
+              <span>or use the button below · JPG / PNG / MP4 / MOV</span>
+            </div>
+            <div class="preview" id="preview" hidden>
+              <img id="image-preview" alt="Selected media preview">
+              <video id="video-preview" controls muted></video>
+              <span class="file-name" id="file-name"></span>
+            </div>
+          </div>
+          <div class="upload-actions">
+            <button class="button button-light" type="button" id="choose-button">Choose media</button>
+            <button class="button button-dark" type="submit" id="analyze-button" disabled>Run analysis</button>
+          </div>
+          <p class="error-message" id="error-message" role="alert"></p>
+        </form>
+
+        <article class="result-card" aria-live="polite">
+          <span class="card-tag">ANALYSIS REPORT</span>
+          <h2 id="result-title">Authenticity result</h2>
+          <div class="result-rule"></div>
+          <div id="result-empty">
+            <p>Upload media and run an analysis to see the model's result here.</p>
+          </div>
+          <div id="result-content" hidden>
+            <div class="result-label" id="result-label"></div>
+            <div class="confidence-row">
+              <span>Confidence</span>
+              <strong id="confidence-value"></strong>
+            </div>
+            <div class="confidence-track"><span id="confidence-bar"></span></div>
+            <p class="result-note" id="result-note"></p>
+          </div>
+          <footer>Results are model-generated guidance. Always verify important media with additional sources.</footer>
+        </article>
+      </div>
+    </section>
+  </main>
+  <script src="script.js?v=3"></script>
+</body>
+</html>
